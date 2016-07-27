@@ -1,5 +1,5 @@
 var _ = require('lodash');
-var Resume = require('./resume.model.js');
+var Resume = require('./models/resume.model.js');
 
 module.exports = function(app) {
 
@@ -49,12 +49,12 @@ module.exports = function(app) {
                 })
             } else {
                 res.json({
-                    info:'resume not found'
+                    info: 'resume not found'
                 })
             }
         })
     });
-  
+
 
     app.put('/resumes/:id', function(req, res) {
         Resume.findById(req.params.id, function(err, resume) {
@@ -88,33 +88,33 @@ module.exports = function(app) {
         })
     });
 
-    app.patch('/resumes/:id',function(req,res){
-        if(req/body._id)
-        delete req.body._id;
-        for(var prop in req.body) {
-           req.body[p]=req.body[p]; 
-        }
-        req.book.save(function(err){
-            if(err){
-                res.status(500).send(err);
-            }else{
-                res.json(req.resume);
+    app.patch('/resumes/:id', function(req, res) {
+            if (req / body._id)
+                delete req.body._id;
+            for (var prop in req.body) {
+                req.body[p] = req.body[p];
             }
-        });
-    })
-    // app.delete('/resume/:id', function(req, res) {
-    //     Resume.findByIdAndRemove(req.params.id, function(err, res) {
-    //         if (err) {
-    //             res.json({
-    //                 info: "Resume can not foind successfully",
-    //                 erorr: err
-    //             });
-    //         }
-    //         res.json({
-    //             info: "Resume deleted successfully"
-    //         });
-    //     });
-    // });
+            req.book.save(function(err) {
+                if (err) {
+                    res.status(500).send(err);
+                } else {
+                    res.json(req.resume);
+                }
+            });
+        })
+        // app.delete('/resume/:id', function(req, res) {
+        //     Resume.findByIdAndRemove(req.params.id, function(err, res) {
+        //         if (err) {
+        //             res.json({
+        //                 info: "Resume can not foind successfully",
+        //                 erorr: err
+        //             });
+        //         }
+        //         res.json({
+        //             info: "Resume deleted successfully"
+        //         });
+        //     });
+        // });
 
 
 }
